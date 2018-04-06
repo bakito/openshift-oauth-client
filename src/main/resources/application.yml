@@ -1,0 +1,46 @@
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      scope: read,write
+      auto-approve-scopes: '.*'
+
+github:
+  client:
+    clientId: bd1c0a783ccdd1c9b9e4
+    clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.github.com/user
+
+
+openshift:
+  client:
+    clientId: ${OPENSHIFT_CLIENT_ID:system:serviceaccount:myproject:jenkins}
+    clientSecret: ${OPENSHIFT_CLIENT_SECRET:eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJteXByb2plY3QiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoiamVua2lucy10b2tlbi00cjViZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJqZW5raW5zIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYzQ1NmMwNzgtMzlkMS0xMWU4LWE4OGQtZGFkMmExMjZjZDIwIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Om15cHJvamVjdDpqZW5raW5zIn0.EhJNZ6MEqZVjrWvFy749WY5u5_U2SZ-VaV1bEJsiEYCKEZFgugAEvAqJPWIFqEpI-AAQD88i-ZHdwm2NWtgSQWKIHaSQCMTr3bV0eJX-TBfi3HTgCfyvXKKpw9vL3hNoDsNLPAYa6Mzzl_peHiRL_0-pVErUqvqY58YpjsrWs0BpJgj48CWDz9p_VQpuBamWR4x4i_NloMX9QqXMB2ABqBjv9qyGDy9R3xLlpEGNDYNyjGSa-yzk4kI0rajvY3mrqOVsX2lejMz4LtFoJTn4KIm_1rPU4rz9ftZIXCN67OYxx374QF4d2BpVnQWkWp5Xa5TBeoi5EdqDm4p3hmNNVA}
+    accessTokenUri: https://192.168.42.176:8443/oauth/token
+    userAuthorizationUri: https://192.168.42.176:8443/oauth/authorize
+   # userAuthorizationUri: https://192.168.42.176:8443/login?then=/oauth/authorize
+    clientAuthenticationScheme: form
+    scope:
+      - user:info
+      - user:check-access
+      - user:full
+      - user:list-projects
+      - user:list-scoped-projects
+    id: openshift
+  resource:
+    userInfoUri: https://192.168.42.176:8443/oapi/v1/users/~
+
+# curl --insecure https://openshift.default.svc/.well-known/oauth-authorization-server
+# https://github.com/minishift/minishift/issues/550
+# https://github.com/openshift/origin-web-console/issues/114
+
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
